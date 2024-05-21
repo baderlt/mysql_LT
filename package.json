@@ -1,0 +1,28 @@
+{
+  "name": "mysql_lt",
+  "version": "1.0.0",
+  "description": "mysql ORM ",
+  "main": "lib/MysqlLt.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/baderlt/mysql_LT.git"
+  },
+  "keywords": [
+    "mysql",
+    "orm",
+    "database"
+  ],
+  "author": "Bader lt",
+  "license": "MIT",
+  "homepage": "https://github.com/baderlt/mysql_LT.git#readme",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
+  
+}
