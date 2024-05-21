@@ -22,7 +22,7 @@ npm install mysql-orm
 ```
 ## Usage
 
-```
+```javascript
 import MysqlOrm from 'mysql-orm';
 
 MysqlOrm.connect({
@@ -74,7 +74,7 @@ class User extends MysqlOrm  {
 * save(): Insert new data into the database.
 
 ## Configuration
-```
+```javascript
 const config={
     host: 'localhost',
     user: 'root',
@@ -86,11 +86,11 @@ MysqlOrm.connect(config)
 ```
 ## Examples
 ## Insert Operation
-  ```
+  ```javascript
   const user= new User({nom:"bader","Email":"baderlatrache10@gmail.com","password":"12345678"}).save();
   ```
 ## Select Operation
-  ```
+  ```javascript
   // simple 
   User.select('*').where('nom', '=', "bader").get()
   // with or condition "orWhere()"
@@ -99,17 +99,17 @@ MysqlOrm.connect(config)
   User.select('nom,id').where('nom', '=', "bader").select("password").get()
   ```
 ## Update Operation  
-  ```
+  ```javascript
  // Update user information
  User.where('id', '=', 1).update({ nom: "new_name",Email: "new_email@gmail.com"}); 
   ```
 ## Delete Operation
-  ```
+  ```javascript
  // Delete user by ID
  User.where('id', '=', 1).delete()
 ```
 ## Join Operations
- ```
+ ```javascript
   // Inner join with another table
 User.select('users.nom', 'profiles.bio')
   .Join('profiles', 'users.id', 'profiles.user_id')
@@ -126,7 +126,7 @@ User.select('users.nom', 'profiles.bio')
  .where('users.nom', '=', "bader").OrderBy("id","Desc").get().
 ```
 ## Aggregate Functions
-```
+```javascript
 // Count users
 User.select('COUNT(*) as count').get();
 // Group by and having conditions
