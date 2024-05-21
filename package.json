@@ -20,6 +20,9 @@
   ],
   "author": "Bader lt",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/baderlt/mysql_LT/issues"
+  },
   "homepage": "https://github.com/baderlt/mysql_LT.git#readme",
   "dependencies": {
     "mysql": "^2.18.1"
