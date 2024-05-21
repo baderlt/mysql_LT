@@ -6,3 +6,5 @@ A simple ORM for MySQL databases.
 
 ```bash
 npm install mysql_lt
+
+#Usage
