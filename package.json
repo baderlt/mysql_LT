@@ -17,7 +17,8 @@
   "keywords": [
     "mysql",
     "orm",
-    "database"
+    "database",
+    "node.js"
   ],
   "author": "Bader lt",
   "license": "MIT",
