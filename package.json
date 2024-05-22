@@ -1,6 +1,6 @@
 {
   "name": "mysql_lt",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A simple ORM for MySQL databases.",
   "main": "lib/MysqlLt.js",
   "type": "module",
