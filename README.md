@@ -35,14 +35,7 @@ MysqlOrm.connect({
 /// model User extends from MysqlOrm
 class User extends MysqlOrm  {
     static table ="users";
-    filables={nom:null,Email:null,password:null};
-    constructor({nom,Email,password}){
-    super(nom,Email,password);    
-    this.filables.nom=nom
-    this.filables.Email=Email;
-    this.filables.password=password;
-    }
-  
+    static _filables=[nom,Email,password];
   }
     // insert new User
     const user= new User({nom:"bader","Email":"baderlatrache10@gmail.com","password":"12345678"});
