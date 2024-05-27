@@ -17,6 +17,7 @@ A simple ORM for MySQL databases.
   - [Delete](#delete)
   - [Join](#join)
   - [Aggregate Functions](#aggregate-functions)
+  - [dbStatement](#dbstatement)
 - [Support](#support)
 
 
@@ -53,24 +54,25 @@ class User extends MysqlOrm  {
 
 ```
 ## API
-* connect(config): Connect to the MySQL database.
-* where(column, condition, value): Add a WHERE condition.
-* orWhere(column, condition, value): Add an OR WHERE condition.
-* select(fields): Specify fields for selection.
-* limit(limit): Set a limit on the number of rows returned.
-* Offset(number): Set an offset for the rows returned.
-* GroupBy(fields): Specify GROUP BY fields.
-* having(column,condition,value): Adds a HAVING condition .
-* OrderBy(column, order): Specify ORDER BY columns.
-* Join(table, t1, t2): Add an INNER JOIN.
-* LeftJoin(table, t1, t2): Add a LEFT JOIN.
-* RightJoin(table, t1, t2): Add a RIGHT JOIN.
+* connect(config:Object): Connect to the MySQL database.
+* where(column:String, condition:String, value:Any): Add a WHERE condition.
+* orWhere(column:String, condition:String, value:Any): Add an OR WHERE condition.
+* select(fields:String): Specify fields for selection.
+* limit(limit:Number): Set a limit on the number of rows returned.
+* Offset(number:Number): Set an offset for the rows returned.
+* GroupBy(fields:String): Specify GROUP BY fields.
+* having(column:String,condition:String,value:Any): Adds a HAVING condition .
+* OrderBy(column:String, order:String): Specify ORDER BY columns.
+* Join(table:String, t1:String, t2:String): Add an INNER JOIN.
+* LeftJoin(table:String, t1:String, t2:String): Add a LEFT JOIN.
+* RightJoin(table:String, t1:String, t2:String): Add a RIGHT JOIN.
 * get(): Execute a SELECT query and return results.
 * first(): Execute a SELECT query and return the first result.
 * all(): Execute a SELECT query and return all results.
-* update(data): Execute an UPDATE query.
+* update(data:Object): Execute an UPDATE query.
 * delete(): Execute a DELETE query.
 * save(): Insert new data into the database.
+* statement(query:String,params:Array) : Execute a raw SQL statement.
 
 ## Configuration
 ```javascript
@@ -130,6 +132,21 @@ User.select('users.nom', 'profiles.bio')
 User.select('COUNT(*) as count').get();
 // Group by and having conditions
 User.select('nom', 'COUNT(*) as count').GroupBy('nom').having('count', '>', 1).get();
+```
+## dbStatement 
+```javascript
+// Define the SQL query 
+const query = 'SELECT * FROM users WHERE nom = ?';
+// Define the parameters for the query. This is an array containing the value to match against 'nom'.
+const params = ['bader'];
+// Execute the SQL query using the statement method of MysqlOrm. This method takes the query and parameters as arguments.
+MysqlOrm.statement(query, params)
+    .then(result => {
+        console.log('Query executed successfully:', result);
+    })
+    .catch(error => {
+        console.error('Error executing query:', error);
+    });
 ```
 
 ## Support
