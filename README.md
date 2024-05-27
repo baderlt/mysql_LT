@@ -11,6 +11,12 @@ A simple ORM for MySQL databases.
 - [API](#api)
 - [Configuration](#configuration)
 - [Examples](#examples)
+  - [Insert](#insert)
+  - [Select](#select)
+  - [Update](#update)
+  - [Delete](#delete)
+  - [Join](#join)
+  - [Aggregate Functions](#aggregate-functions)
 - [Support](#support)
 
 
@@ -78,11 +84,11 @@ MysqlOrm.connect(config)
 
 ```
 ## Examples
-## Insert Operation
+## Insert
   ```javascript
   const user= new User({nom:"bader","Email":"baderlatrache10@gmail.com","password":"12345678"}).save();
   ```
-## Select Operation
+## Select 
   ```javascript
   // simple 
   User.select('*').where('nom', '=', "bader").get()
@@ -91,17 +97,17 @@ MysqlOrm.connect(config)
   // select specify fields for selection in the query
   User.select('nom,id').where('nom', '=', "bader").select("password").get()
   ```
-## Update Operation  
+## Update   
   ```javascript
  // Update user information
  User.where('id', '=', 1).update({ nom: "new_name",Email: "new_email@gmail.com"}); 
   ```
-## Delete Operation
+## Delete 
   ```javascript
  // Delete user by ID
  User.where('id', '=', 1).delete()
 ```
-## Join Operations
+## Join 
  ```javascript
   // Inner join with another table
 User.select('users.nom', 'profiles.bio')
