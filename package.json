@@ -1,6 +1,6 @@
 {
   "name": "mysql_lt",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A simple ORM for MySQL databases.",
   "main": "lib/MysqlLt.js",
   "type": "module",
@@ -8,7 +8,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,11 @@
   "homepage": "https://github.com/baderlt/mysql_LT.git#readme",
   "dependencies": {
     "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.6",
+    "@babel/preset-env": "^7.24.6",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0"
   }
-  
 }
