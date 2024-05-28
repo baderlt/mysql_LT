@@ -18,6 +18,7 @@ A simple ORM for MySQL databases.
   - [Join](#join)
   - [Aggregate Functions](#aggregate-functions)
   - [dbStatement](#dbstatement)
+- [Transactions](#transactions) 
 - [Support](#support)
 
 
@@ -148,6 +149,62 @@ MysqlOrm.statement(query, params)
         console.error('Error executing query:', error);
     });
 ```
+## Transactions
+Transactions allow you to execute a sequence of operations in a way that ensures either all operations succeed or none do, maintaining the integrity of your database. This is particularly useful when multiple related operations need to be performed and it's crucial that they all complete successfully. Your ORM automatically handles rolling back the transaction if any operation within it fails
+
+### Example Usage
+``` javascript
+// Begin a new transaction
+MysqlOrm.beginTransaction();
+    // Perform multiple operations within the transaction
+    Users.where("id", "=", 10).update({ score: 'score + 100' });
+    Partie.where("ID_User", "=", 10).update({ R_Score: 'R_Score - 100' });
+ // Commit the transaction to save changes
+MysqlOrm.Commit().then(res => console.log(res));
+.catch(error=>console.error('Transaction failed: ', error));
+```
+### Methods
+- beginTransaction():
+Starts a new transaction. All subsequent operations will be part of this transaction until it is either committed or rolled back.
+- Commit():Commits the current transaction. If all operations within the transaction are successful, the changes are permanently saved to the database. If any operation fails, the transaction is rolled back automatically.
+
+### Handling Errors
+The Commit function automatically handles rolling back the transaction if any operation fails. You should still handle the promise rejection to manage any additional error logging or user notifications.
+### Complete Example
+Here's a more complete example including automatic rollback handling:
+``` javascript
+import MysqlOrm from "mysql_lt";
+
+// Model User 
+class User extends MysqlOrm  {
+    static table ="users";
+    static _filables=["nom","Email","score"]
+  
+  }
+// model Partie
+class Partie extends MysqlOrm{
+  static table="parties";
+}
+  
+// Start a transaction
+MysqlOrm.beginTransaction();
+    // Perform update operations
+    User.where("id", "=", 10).update({ score: 'score + 100' });
+    Partie.where("ID_User", "=", 10).update({ R_Score: 'R_Score - 100' });
+// Commit the transaction
+MysqlOrm.Commit()
+        .then(res => {
+            console.log(res.message);
+        })
+        .catch(error => {
+            console.error('Transaction failed:', error);
+            // Rollback is automatically handled within the Commit function
+        });
+```
+### Notes
+- Ensure that you have a valid database connection before starting a transaction.
+- Always handle both the 'Commit' and error scenarios to maintain database integrity.
+- The methods 'beginTransaction' and 'Commit' are designed to be easy to use, with automatic rollback for reliability.
 
 ## Support
   If you have any questions or need help, feel free to open an issue or contact me directly at baderlatrache10@gmail.com
